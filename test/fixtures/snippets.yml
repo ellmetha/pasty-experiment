@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  lexer: MyString
+  expire_in: 2018-12-29 23:20:28
+  is_one_time: false
+
+two:
+  content: MyText
+  lexer: MyString
+  expire_in: 2018-12-29 23:20:28
+  is_one_time: false
