@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+
+
+// 1. Variables
+@import "variables";
+
+// 1. Vendors
+@import "~bulma";
+
+// 2. Mixins
+@import "mixins";
+
+// 3. Common elements
+@import "common";
+
+// 3. Pages
