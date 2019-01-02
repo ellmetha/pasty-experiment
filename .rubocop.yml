@@ -1,0 +1,30 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.5
+  Exclude:
+    - "bin/*"
+    - Capfile
+    - config/boot.rb
+    - config/environment.rb
+    - db/schema.rb
+    - "node_modules/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - Gemfile
+    - Rakefile
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - "config/**/*"
+    - "db/**/*"
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
