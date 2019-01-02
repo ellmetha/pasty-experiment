@@ -32,3 +32,6 @@
 
 # Don't put database configuration file in source control
 /config/database.yml
+
+# Ignore coverage reports
+/coverage/
