@@ -1,16 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
   <head>
-    <title>PastyExperiment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+    <title><%= content_for?(:title) ? yield(:title) + " - Pasty" : "Pasty - The paste tool you'll love" %></title>
+    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : '' %>" />
+    <meta name="keywords" content="<%= content_for?(:meta_keywords) ? yield(:meta_keywords) : '' %>" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'App' %>
     <%= stylesheet_pack_tag 'App', media: 'all' %>
+    <%= yield(:head) %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrap">
+      <div id="navbar_wrapper" class="has-background-danger">
+        <div class="container is-fluid">
+          <nav class="navbar is-danger" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">Pasty</a>
+              <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div id="pasty_navbar" class="navbar-menu">
+              <div class="navbar-start">
+                <a class="navbar-item">About</a>
+              </div>
+              <div class="navbar-end">
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <%= yield %>
+      <footer id="footer" class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            <p class="copyright">&copy; Pasty <%= Date.today.year %></p>
+          </div>
+        </div>
+      </footer>
+    </div>
     <%= javascript_pack_tag 'App' %>
   </body>
 </html>
