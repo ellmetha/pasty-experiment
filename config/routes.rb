@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get 'snippet/index'
-  root 'snippet#index'
+  resources :snippets, only: %i[show create]
+  root 'snippets#new'
 end

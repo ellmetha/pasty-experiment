@@ -1,0 +1,24 @@
+<%= form_with(model: snippet, local: true) do |form| %>
+<% if snippet.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+  <ul>
+  <% company.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= form.label :content, class: 'label' %>
+  <div class="control">
+    <%= form.text_area :content, class: 'textarea' %>
+  </div>
+</div>
+
+<div class="field">
+  <%= form.submit 'Pase snippet', class: 'button is-link' %>
+</div>
+<% end %>
