@@ -1,4 +1,6 @@
 require "simplecov"
+require 'simplecov-console'
+SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start("rails") do
   add_filter("/bin/")
   add_filter("/lib/tasks/auto_annotate_models.rake")
