@@ -12,4 +12,24 @@
 #
 
 class Snippet < ApplicationRecord
+  # Defines the supported lexers as a hash containinga <language codename, language label> pairs.
+  # The underlying list of languages is far from being exhaustive.
+  LEXERS = {
+    html: 'HTML',
+    javascript: 'Javascript',
+    markdown: 'Markdown',
+    plaintext: 'Plain text',
+    python: 'Python',
+    ruby: 'Ruby'
+  }.freeze
+
+  validates :lexer, inclusion: { in: LEXERS.keys.map(&:to_s) }
+
+  # Defines specific is_lexer? methods = and scopes for each considered lexer. Unique constants are
+  # also generated for each lexer.
+  LEXERS.keys.each do |lexer|
+    define_method("is_#{lexer}?") { self.lexer == lexer.to_s }
+    scope lexer, -> { where(lexer: lexer) }
+    const_set(lexer.upcase, lexer)
+  end
 end
