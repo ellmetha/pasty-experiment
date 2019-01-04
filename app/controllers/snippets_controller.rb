@@ -29,6 +29,6 @@ class SnippetsController < ApplicationController
   end
 
   def snippet_params
-    params.require(:snippet).permit(:lexer, :content)
+    params.require(:snippet).permit(:lexer, :content, :expiration)
   end
 end

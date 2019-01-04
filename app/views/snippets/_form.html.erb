@@ -1,8 +1,17 @@
 <%= form_with(model: snippet, local: true, builder: AppFormBuilder) do |form| %>
 <div class="level">
   <div class="level-left">
-    <div class="select">
-      <%= form.select :lexer, options_for_select(Snippet::LEXERS.map {|k, v| [v, k]}, snippet.lexer), {} %>
+    <div class="level-item">
+      <div class="select">
+        <%= form.select :lexer, options_for_select(Snippet::LEXERS.map {|k, v| [v, k]}, snippet.lexer), {} %>
+        <%= form.errors :lexer %>
+      </div>
+    </div>
+    <div class="level-item">
+      <div class="select">
+        <%= form.select :expiration, options_for_select(Snippet::EXPIRATIONS.map {|k, v| [v, k]}, snippet.expiration), {} %>
+        <%= form.errors :expiration %>
+      </div>
     </div>
   </div>
   <div class="level-right">
