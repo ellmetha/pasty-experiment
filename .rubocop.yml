@@ -20,6 +20,9 @@ Metrics/LineLength:
     - "config/**/*"
     - "db/**/*"
 
+Metrics/MethodLength:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
@@ -31,3 +34,4 @@ Style/EmptyMethod:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
