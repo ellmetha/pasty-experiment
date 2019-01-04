@@ -1,24 +1,34 @@
-<%= form_with(model: snippet, local: true) do |form| %>
+<%= form_with(model: snippet, local: true, builder: AppFormBuilder) do |form| %>
 <% if snippet.errors.any? %>
 <div id="error_explanation">
-  <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+  <h2><%= pluralize(company.errors.count, "error") %> prohibited this snippet from being saved:</h2>
 
   <ul>
-  <% company.errors.full_messages.each do |message| %>
+    <% snippet.errors.full_messages.each do |message| %>
     <li><%= message %></li>
-  <% end %>
+    <% end %>
   </ul>
 </div>
 <% end %>
 
-<div class="field">
-  <%= form.label :content, class: 'label' %>
-  <div class="control">
-    <%= form.text_area :content, class: 'textarea' %>
+<div class="level">
+  <div class="level-left">
+    <div class="select">
+      <%= form.select :lexer, options_for_select(Snippet::LEXERS.map {|k, v| [v, k]}, snippet.lexer), {} %>
+    </div>
+  </div>
+  <div class="level-right">
+    <div class="level-item">
+      <div class="field">
+        <%= form.submit 'Paste snippet' %>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="field">
-  <%= form.submit 'Pase snippet', class: 'button is-link' %>
+  <div class="control">
+    <%= form.text_area :content, placeholder: "Paste your awesome code here...", autofocus: true %>
+  </div>
 </div>
 <% end %>
