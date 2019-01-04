@@ -23,7 +23,8 @@ class Snippet < ApplicationRecord
     ruby: 'Ruby'
   }.freeze
 
-  validates :lexer, inclusion: { in: LEXERS.keys.map(&:to_s) }
+  validates :lexer, inclusion: { in: LEXERS.keys.map(&:to_s) }, presence: true
+  validates :content, presence: true
 
   # Defines specific is_lexer? methods = and scopes for each considered lexer. Unique constants are
   # also generated for each lexer.
