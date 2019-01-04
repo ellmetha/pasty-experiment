@@ -12,6 +12,13 @@ class SnippetsController < ApplicationController
 
   # Performs the actual creation of a newly posted snippet.
   def create
+    @snippet = Snippet.new(snippet_params)
+
+    if @snippet.save
+      redirect_to @snippet, notice: 'Employee was successfully created.'
+    else
+      render :new
+    end
   end
 
   private
@@ -19,5 +26,9 @@ class SnippetsController < ApplicationController
   # Set a current snippet associated with an action.
   def set_snippet
     @snippet = Snippet.find(params[:id])
+  end
+
+  def snippet_params
+    params.require(:snippet).permit(:lexer, :content)
   end
 end
