@@ -1,16 +1,4 @@
 <%= form_with(model: snippet, local: true, builder: AppFormBuilder) do |form| %>
-<% if snippet.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(company.errors.count, "error") %> prohibited this snippet from being saved:</h2>
-
-  <ul>
-    <% snippet.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-
 <div class="level">
   <div class="level-left">
     <div class="select">
@@ -29,6 +17,7 @@
 <div class="field">
   <div class="control">
     <%= form.text_area :content, placeholder: "Paste your awesome code here...", autofocus: true %>
+    <%= form.errors :content %>
   </div>
 </div>
 <% end %>
