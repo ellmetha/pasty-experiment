@@ -15,12 +15,12 @@ class Snippet < ApplicationRecord
   # Defines the supported lexers as a hash containinga <language codename, language label> pairs.
   # The underlying list of languages is far from being exhaustive.
   LEXERS = {
-    html: 'HTML',
-    javascript: 'Javascript',
-    markdown: 'Markdown',
-    plaintext: 'Plain text',
-    python: 'Python',
-    ruby: 'Ruby'
+    html: _('HTML'),
+    javascript: _('Javascript'),
+    markdown: _('Markdown'),
+    plaintext: _('Plain text'),
+    python: _('Python'),
+    ruby: _('Ruby')
   }.freeze
 
   validates :lexer, inclusion: { in: LEXERS.keys.map(&:to_s) }, presence: true

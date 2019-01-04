@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
-    <title><%= content_for?(:title) ? yield(:title) + " - Pasty" : "Pasty - The paste tool you'll love" %></title>
+    <title><%= content_for?(:title) ? yield(:title) + " - Pasty" : "Pasty - " + _("The paste tool you'll love") %></title>
     <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : '' %>" />
     <meta name="keywords" content="<%= content_for?(:meta_keywords) ? yield(:meta_keywords) : '' %>" />
     <%= csrf_meta_tags %>
@@ -30,7 +30,7 @@
             </div>
             <div id="pasty_navbar" class="navbar-menu">
               <div class="navbar-start">
-                <a class="navbar-item">About</a>
+                <a class="navbar-item"><%= _('About') %></a>
               </div>
               <div class="navbar-end">
               </div>
