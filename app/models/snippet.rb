@@ -14,7 +14,7 @@
 class Snippet < ApplicationRecord
   attr_reader :expiration
 
-  # Defines the supported lexers as a hash containinga <language codename, language label> pairs.
+  # Defines the supported lexers as a hash containing a <language codename, language label> pairs.
   # The underlying list of languages is far from being exhaustive.
   LEXERS = {
     html: _('HTML'),
