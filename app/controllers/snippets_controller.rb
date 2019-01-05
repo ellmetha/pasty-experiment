@@ -8,6 +8,7 @@ class SnippetsController < ApplicationController
   # Allows to trigger the creation of a new snippet.
   def new
     @snippet = Snippet.new
+    @snippet.require_expiration
   end
 
   # Performs the actual creation of a newly posted snippet.

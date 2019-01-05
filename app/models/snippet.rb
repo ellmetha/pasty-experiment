@@ -37,7 +37,10 @@ class Snippet < ApplicationRecord
 
   validates :lexer, inclusion: { in: LEXERS.keys.map(&:to_s) }, presence: true
   validates :content, presence: true
-  validates :expiration, inclusion: { in: EXPIRATIONS.keys.map(&:to_s) }, presence: true
+  validates :expiration,
+            inclusion: { in: EXPIRATIONS.keys.map(&:to_s) },
+            presence: true,
+            if: :expiration_required?
 
   # Defines specific is_lexer? methods = and scopes for each considered lexer. Unique constants are
   # also generated for each lexer.
@@ -66,10 +69,26 @@ class Snippet < ApplicationRecord
     end
   end
 
+  # Ensures that the expiration virtual attribute will be required at validation time. This method
+  # exists because it is possible to create snippets without using the 'expire_in' and 'is_one_time'
+  # accessors; but by using a simplified 'expiration' virtual attribute instead. In that case
+  # validation of the 'expiration' values could be required and this is why this method exists.
+  # It is still possible to create snippet by manually setting 'expire_in' and 'is_one_time' values
+  # though.
+  def require_expiration
+    @expiration_required = true
+  end
+
   private
 
+  # Allows to set expiration and one time state columns, both at the same time.
   def set_expiration_and_one_time_state(expire_in, is_one_time)
     self.expire_in = expire_in
     self.is_one_time = is_one_time
+  end
+
+  # Indicates whether the expiration virtual attribute is required or not.
+  def expiration_required?
+    @expiration_required
   end
 end
