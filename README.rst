@@ -49,9 +49,9 @@ Frontend developments
 This project use Webpack_ and Webpacker_ to bundle the assets of the
 application. Client-side scripts and stylesheets are respectively written using
 **vanilla JS** and Sass_. By now all the tools necessary to work on the assets
-of this project should've been installed by now (the ``bin/setup`` command
-normally should've taken care of it - otherwise it is still possible to do a
-quick ``yarn install``).
+of this project should've been installed (the ``bin/setup`` command normally
+should've taken care of it - otherwise it is still possible to do a quick
+``yarn install``).
 
 In development, Webpacker will compile bundle automatically. That being said,
 it is possible to use a hot reloading server if you need to make frequent
@@ -78,6 +78,10 @@ For code coverage, the following command can be used:
 .. code-block:: shell
 
   $ bin/rails test:coverage
+
+Code quality checks can be triggered using the following command:
+
+  $ bin/rubocop
 
 .. _Node: https://nodejs.org
 .. _PostgreSQL: https://www.postgresql.org
