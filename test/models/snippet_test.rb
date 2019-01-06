@@ -47,6 +47,25 @@ class SnippetTest < ActiveSupport::TestCase
     assert_not snippet.valid?
   end
 
+  test 'validations succeeds with a never-ending expiration when a user is associated' do
+    snippet = Snippet.new(
+      lexer: :python,
+      content: 'import datetime',
+      expiration: 'never',
+      user: FactoryBot.create(:user)
+    )
+    snippet.require_expiration
+    assert_predicate snippet, 'valid?'
+  end
+
+  test 'validations fails with a never-ending expiration when no user is associated' do
+    snippet = Snippet.new(
+      lexer: :python, content: 'import datetime', expiration: 'never', user: nil
+    )
+    snippet.require_expiration
+    assert_not snippet.valid?
+  end
+
   test 'knows if it corresponds to a specific language' do
     snippet = FactoryBot.create(:snippet, lexer: :python)
     assert_predicate snippet, :is_python?

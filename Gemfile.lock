@@ -92,6 +92,8 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     fast_gettext (2.0.0)
     ffi (1.9.25)
     gettext (3.2.9)
@@ -253,6 +255,7 @@ DEPENDENCIES
   chromedriver-helper
   devise
   factory_bot_rails
+  faker
   gettext (>= 3.0.2)
   gettext_i18n_rails
   jbuilder (~> 2.5)

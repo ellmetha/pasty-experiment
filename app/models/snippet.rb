@@ -48,7 +48,7 @@ class Snippet < ApplicationRecord
   validates :lexer, inclusion: { in: LEXERS.keys.map(&:to_s) }, presence: true
   validates :content, presence: true
   validates :expiration,
-            inclusion: { in: EXPIRATIONS.keys.map(&:to_s) },
+            inclusion: { in: proc { |s| s.expirations.keys.map(&:to_s) } },
             presence: true,
             if: :expiration_required?
 
@@ -58,6 +58,14 @@ class Snippet < ApplicationRecord
     define_method("is_#{lexer}?") { self.lexer == lexer.to_s }
     scope lexer, -> { where(lexer: lexer) }
     const_set(lexer.upcase, lexer)
+  end
+
+  # Returns the applicable unique expiration identifiers that can be used for the considered Snippet
+  # instance. This mostly depends on the fact that a user is associated with the snippet or not: if
+  # a snippet is associated with a specific user, the snippet can be saved with a never ending
+  # expiration.
+  def expirations
+    EXPIRATIONS.dup.delete_if { |key| user_id.nil? && key == :never }
   end
 
   # Allows to set the expiration datetime and one-time state of the snippet depending on a unique

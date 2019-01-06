@@ -9,7 +9,7 @@
     </div>
     <div class="level-item">
       <div class="select">
-        <%= form.select :expiration, options_for_select(Snippet::EXPIRATIONS.map {|k, v| [v, k]}, snippet.expiration), {} %>
+        <%= form.select :expiration, options_for_select(snippet.expirations.map {|k, v| [v, k]}, snippet.expiration), {} %>
         <%= form.errors :expiration %>
       </div>
     </div>
