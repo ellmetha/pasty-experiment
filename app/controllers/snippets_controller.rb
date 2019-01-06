@@ -3,6 +3,9 @@ class SnippetsController < ApplicationController
 
   # Displays a specific snippet.
   def show
+    @new_snippet_from_current = Snippet.new(
+      lexer: @snippet.lexer, content: @snippet.content, user: current_user
+    )
   end
 
   # Allows to trigger the creation of a new snippet.
