@@ -3,11 +3,11 @@ pasty-experiment
 
 Pasty is a hypothetical paste tool where users can can store plain text (like
 source code snippets) to be shared later on. Needless to say that this project
-is just an humble - and small - experiment I worked on while experimenting Ruby
+is just a humble - and small - experiment I worked on while experimenting Ruby
 on Rails.
 
 .. contents:: Table of Contents
-    :local:
+  :local:
 
 Main requirements
 =================
