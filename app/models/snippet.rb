@@ -9,10 +9,20 @@
 #  is_one_time :boolean          default(FALSE), not null
 #  lexer       :string           not null
 #  updated_at  :datetime         not null
+#  user_id     :bigint(8)
+#
+# Indexes
+#
+#  index_snippets_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 class Snippet < ApplicationRecord
   attr_reader :expiration
+  belongs_to :user, optional: true
 
   # Defines the supported lexers as a hash containing a <language codename, language label> pairs.
   # The underlying list of languages is far from being exhaustive.
