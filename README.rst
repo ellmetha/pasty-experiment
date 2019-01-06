@@ -29,7 +29,7 @@ You can install the project locally using the following commands:
   $ git clone https://github.com/ellmetha/pasty-experiment && cd pasty-experiment
   $ bin/setup
 
-The ``bin/setup`` script will installs the required dependencies (gems using
+The ``bin/setup`` script will install the required dependencies (gems using
 bundler and node modules using yarn), create a local copy of the
 ``database.yml`` file and setup the database (create, migrate and seet it).
 
