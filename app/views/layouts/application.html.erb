@@ -13,7 +13,12 @@
     <%= yield(:head) %>
   </head>
 
-  <body>
+  <body
+    id="<%= content_for?(:body_id) ? yield(:body_id) : '' %>"
+    class="<%= content_for?(:body_class) ? yield(:body_class) : '' %>"
+    data-controller="<%= content_for?(:data_controller) ? yield(:data_controller) : '' %>"
+    data-action="<%= content_for?(:data_action) ? yield(:data_action) : '' %>"
+  >
     <div id="wrap">
       <div id="navbar_wrapper" class="has-background-success">
         <div class="container is-fluid">
