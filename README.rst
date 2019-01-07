@@ -33,7 +33,8 @@ The ``bin/setup`` script will install the required dependencies (gems using
 bundler and node modules using yarn), create a local copy of the
 ``database.yml`` file and setup the database (create, migrate and seet it).
 
-Once this is done you can run the develpent server using the following command:
+Once this is done you can run the development server using the following
+command:
 
 .. code-block:: shell
 
@@ -80,6 +81,8 @@ For code coverage, the following command can be used:
   $ bin/rails test:coverage
 
 Code quality checks can be triggered using the following command:
+
+.. code-block:: shell
 
   $ bin/rubocop
 
