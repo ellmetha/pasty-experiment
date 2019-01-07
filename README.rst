@@ -86,6 +86,11 @@ Code quality checks can be triggered using the following command:
 
   $ bin/rubocop
 
+License
+=======
+
+MIT. See ``LICENSE`` for more details.
+
 .. _Node: https://nodejs.org
 .. _PostgreSQL: https://www.postgresql.org
 .. _Ruby: https://www.ruby-lang.org
