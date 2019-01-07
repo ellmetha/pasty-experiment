@@ -19,7 +19,7 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.new(snippet_params)
 
     if @snippet.save
-      redirect_to @snippet, notice: 'Employee was successfully created.'
+      redirect_to @snippet, notice: _('Snippet was successfully created.')
     else
       render :new
     end

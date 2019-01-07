@@ -1,0 +1,7 @@
+<% if flash.keys.length > 0 %>
+<div id="flash_messages">
+  <% flash.each do |name, msg| %>
+  <div class="message" data-name="<%= name %>" data-msg="<%= msg %>"></div>
+  <% end %>
+</div>
+<% end %>
