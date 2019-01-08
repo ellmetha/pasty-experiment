@@ -4,19 +4,50 @@
   "dependencies": {
     "@rails/webpacker": "https://github.com/rails/webpacker",
     "bulma": "^0.7.2",
+    "highlight.js": "^9.13.1",
     "noty": "^3.2.0-beta"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-transform-regenerator": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/register": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
     "eslint": "^5.11.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^22.1.2",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.2",
+    "jest": "^23.6.0",
     "webpack-dev-server": "^3.1.14"
   },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "app/frontend/js/**/*.{js,jsx}"
+    ],
+    "coverageDirectory": "./coverage/",
+    "moduleDirectories": [
+      "node_modules",
+      "app/frontend/js"
+    ],
+    "testPathIgnorePatterns": [
+      "./test/frontend/js/wrapper.js"
+    ],
+    "testRegex": "(/test/frontend/js/.*|\\.(react-test|spec|test))\\.(ts|tsx|js|jsx)$",
+    "transform": {
+      "^.+\\.jsx?$": "./test/frontend/js/wrapper.js"
+    }
+  },
   "scripts": {
-    "lint": "eslint --quiet --ext .js,.jsx 'app/frontend/**/*'"
+    "lint": "eslint --quiet --ext .js,.jsx 'app/frontend/**/*'",
+    "test": "jest"
   }
 }
