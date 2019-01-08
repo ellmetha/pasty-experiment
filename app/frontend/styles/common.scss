@@ -6,3 +6,13 @@
 div#flash_messages {
   display: none;
 }
+
+.noty_bar {
+  &.noty_type__alert {
+    background-color: $danger;
+  }
+
+  &.noty_type__success {
+    background-color: $success;
+  }
+}

@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "https://github.com/rails/webpacker",
-    "bulma": "^0.7.2"
+    "bulma": "^0.7.2",
+    "noty": "^3.2.0-beta"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
