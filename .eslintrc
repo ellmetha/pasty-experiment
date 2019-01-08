@@ -30,7 +30,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["app/frontend"]
+        "paths": ["app/frontend", "app/frontend/js"]
       }
     }
   }

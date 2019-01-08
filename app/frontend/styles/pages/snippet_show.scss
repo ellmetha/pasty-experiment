@@ -7,4 +7,20 @@ body#snippet_show {
   section#snippet_url {
     padding: 1rem 0;
   }
+
+  section#snippet_content {
+    padding: 0;
+
+    .container {
+      margin: 0;
+
+      pre {
+        padding: 0;
+
+        code {
+          padding: 1rem;
+        }
+      }
+    }
+  }
 }
