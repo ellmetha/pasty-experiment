@@ -17,6 +17,6 @@
     "webpack-dev-server": "^3.1.14"
   },
   "scripts": {
-    "lint": "eslint --quiet --ext .js,.jsx app/frontend/**/*"
+    "lint": "eslint --quiet --ext .js,.jsx 'app/frontend/**/*'"
   }
 }

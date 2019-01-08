@@ -5,7 +5,7 @@
     "browser": true,
     "es6": true,
     "jest/globals": true,
-    "node": true,
+    "node": true
   },
 
   "parser": "babel-eslint",
@@ -24,6 +24,14 @@
     "no-return-assign": 0,
     "no-underscore-dangle": 0,
     "no-unused-vars": 1,
-    "no-useless-escape": 0,
+    "no-useless-escape": 0
   },
+
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["app/frontend"]
+      }
+    }
+  }
 }
