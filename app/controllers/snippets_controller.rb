@@ -3,6 +3,11 @@ class SnippetsController < ApplicationController
 
   # Displays a specific snippet.
   def show
+    if @snippet.is_one_time? && @snippet.views_counter.positive?
+      @snippet.destroy
+    else
+      @snippet.increment!(:views_counter)
+    end
     @new_snippet_from_current = Snippet.new(
       lexer: @snippet.lexer, content: @snippet.content, user: current_user
     )
