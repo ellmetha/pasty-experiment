@@ -14,7 +14,7 @@ Main requirements
 
 * Ruby_ 2.5+
 * PostgreSQL_
-* Node_ 11.0+ (for development only)
+* Node_ 11.0+ and yarn_ (for development only)
 
 Development setup
 =================
@@ -97,3 +97,4 @@ MIT. See ``LICENSE`` for more details.
 .. _Sass: http://sass-lang.com
 .. _Webpack: https://webpack.js.org
 .. _Webpacker: https://github.com/rails/webpacker
+.. _yarn: https://yarnpkg.com/en/
