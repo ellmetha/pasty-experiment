@@ -4,6 +4,8 @@
 
 
 body#snippet_show {
+  @import "../components/snippet_form";
+
   section#snippet_url {
     padding: 1rem 0;
   }
@@ -22,5 +24,9 @@ body#snippet_show {
         }
       }
     }
+  }
+
+  section#edit_snippet_divider {
+    padding: 1rem 0;
   }
 }
