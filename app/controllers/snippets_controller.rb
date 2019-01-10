@@ -3,11 +3,16 @@ class SnippetsController < ApplicationController
 
   # Displays a specific snippet.
   def show
-    if @snippet.is_one_time? && @snippet.views_counter.positive?
+    # The snippet should be destroyed in the case where it is one-time and it should no longer be
+    # pe possible to access to it. In other cases, the views counter of the snippet is incremented.
+    if @snippet.one_time_view_consumed?
       @snippet.destroy
     else
       @snippet.increment!(:views_counter)
     end
+
+    # Users have the ability to create a new snippet using the content of the currently displayed
+    # snippet. This is why a new Snippet instance is created at this point.
     @new_snippet_from_current = Snippet.new(
       lexer: @snippet.lexer, content: @snippet.content, user: current_user
     )

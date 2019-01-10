@@ -88,6 +88,12 @@ class Snippet < ApplicationRecord
     end
   end
 
+  # Returns true if the current Snippet instance is a one-time snippet and should be removed because
+  # it should no longer be possible to view it.
+  def one_time_view_consumed?
+    @snippet.is_one_time? && @snippet.views_counter.positive?
+  end
+
   # Ensures that the expiration virtual attribute will be required at validation time. This method
   # exists because it is possible to create snippets without using the 'expire_in' and 'is_one_time'
   # accessors; but by using a simplified 'expiration' virtual attribute instead. In that case
