@@ -1,3 +1,6 @@
+<% snippet_content_autofocus = false if local_assigns[:snippet_content_autofocus].nil? %>
+<% snippet_content_autofocus = local_assigns.fetch :snippet_content_autofocus, false %>
+
 <%= form_with(model: snippet, local: true, builder: AppFormBuilder) do |form| %>
 <div class="level">
   <div class="level-left">
@@ -25,7 +28,7 @@
 
 <div class="field">
   <div class="control">
-    <%= form.text_area :content, placeholder: _("Paste your awesome code here..."), autofocus: true, rows: 10 %>
+    <%= form.text_area :content, placeholder: _("Paste your awesome code here..."), autofocus: snippet_content_autofocus, rows: 10 %>
     <%= form.errors :content %>
   </div>
 </div>
