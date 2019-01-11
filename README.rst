@@ -27,9 +27,9 @@ You can install the project locally using the following commands:
 .. code-block:: shell
 
   $ git clone https://github.com/ellmetha/pasty-experiment && cd pasty-experiment
-  $ bin/setup
+  $ make
 
-The ``bin/setup`` script will install the required dependencies (gems using
+The ``make`` action will install the required dependencies (gems using
 bundler and node modules using yarn), create a local copy of the
 ``database.yml`` file and setup the database (create, migrate and seet it).
 
@@ -38,9 +38,7 @@ command:
 
 .. code-block:: shell
 
-  $ bundle exec rails s
-
-(or you can also use the ``bin/rails s`` shortcut)
+  $ make server
 
 Congrats, you're in! The development server should now be accessible at http://127.0.0.1:3000.
 
@@ -50,9 +48,9 @@ Frontend developments
 This project use Webpack_ and Webpacker_ to bundle the assets of the
 application. Client-side scripts and stylesheets are respectively written using
 **vanilla JS** and Sass_. By now all the tools necessary to work on the assets
-of this project should've been installed (the ``bin/setup`` command normally
-should've taken care of it - otherwise it is still possible to do a quick
-``yarn install``).
+of this project should've been installed (the ``bin/setup`` or ``make`` command
+normally should've taken care of it - otherwise it is still possible to do a
+quick ``yarn install``).
 
 In development, Webpacker will compile bundle automatically. That being said,
 it is possible to use a hot reloading server if you need to make frequent
@@ -63,7 +61,7 @@ server in another terminal:
 .. code-block:: shell
 
   $ bin/webpack-dev-server
-  $ bin/rails s  # into another terminal
+  $ make server  # into another terminal
 
 Running the test suite
 ======================
@@ -72,19 +70,25 @@ The test suite can be run using the following command:
 
 .. code-block:: shell
 
-  $ bin/rails test
+  $ make test         # run all test suites
+  $ make test_rails   # run Rails test suite
+  $ make test_js      # run JS tests
 
 For code coverage, the following command can be used:
 
 .. code-block:: shell
 
-  $ bin/rails test:coverage
+  $ make coverage         # generate all coverage reports
+  $ make coverage_rails   # generate Rails coverage report
+  $ make coverage_js      # generate JS coverage report
 
 Code quality checks can be triggered using the following command:
 
 .. code-block:: shell
 
-  $ bin/rubocop
+  $ make qa         # run all QA checks
+  $ make qa_rails   # run Rails QA checks
+  $ make qa_js      # run JS QA checks
 
 License
 =======
