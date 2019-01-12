@@ -11,9 +11,11 @@ init:
 # console or other common tasks.
 # --------------------------------------------------------------------------------------------------
 
+c: console
 console:
 	bin/rails c
 
+s: server
 server:
 	bin/rails s
 
@@ -44,6 +46,7 @@ coverage_rails:
 	bin/rails test:coverage
 
 # Just runs all the tests!
+t: tests
 tests: tests_js tests_rails
 tests_js:
 	yarn test
