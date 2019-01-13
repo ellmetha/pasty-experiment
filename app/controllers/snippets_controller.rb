@@ -11,9 +11,8 @@ class SnippetsController < ApplicationController
       @snippet.increment!(:views_counter)
     end
 
-    if params.include?('raw')
-      return render(plain: @snippet.content)
-    end
+    # Returns the raw snippet content if it was explicitely requested by the client.
+    return render(plain: @snippet.content) if params.include?('raw')
 
     # Users have the ability to create a new snippet using the content of the currently displayed
     # snippet. This is why a new Snippet instance is created at this point.

@@ -32,7 +32,7 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
 
   test 'allows plain text rendering of a snippet using the raw GET parameter' do
     snippet = FactoryBot.create(:snippet, lexer: 'python', content: 'import datetime')
-    get snippet_url(snippet), params: {raw: ''}
+    get snippet_url(snippet), params: { raw: '' }
     assert_response :success
     assert_equal 'text/plain', @response.content_type
   end
