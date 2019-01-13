@@ -1,26 +1,35 @@
-<h2>Log in</h2>
+<% content_for(:navbar) do %>&nbsp;<% end %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third is-offset-one-third">
+        <div class="is-pt-2 is-pb-4 has-text-centered">
+          <img src="<%= asset_pack_path 'images/pasty_logo_cyan.svg' %>" alt="Pasty logo" width="120" />
+        </div>
+        <h1 class="title has-text-centered"><%= _('Log in') %></h1>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), builder: AppFormBuilder) do |f| %>
+          <div class="field">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+          <div class="field">
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <div class="actions">
+            <%= f.submit "Log in", class: 'is-large is-fullwidth' %>
+          </div>
+        <% end %>
+
+        <div class="is-py-5 has-text-centered">
+          <a href="<%= new_user_password_path('passwords') %>"><%= _('Forgot your password?') %></a>
+          &ndash;
+          <a href="<%= new_user_registration_path %>"><%= _('Create an account') %></a>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

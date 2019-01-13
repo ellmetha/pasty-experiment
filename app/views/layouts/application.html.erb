@@ -20,12 +20,15 @@
     data-action="<%= content_for?(:data_action) ? yield(:data_action) : '' %>"
   >
     <div id="wrap">
+      <% if content_for?(:navbar) %>
+        <%= yield(:navbar) %>
+      <% else %>
       <div id="navbar_wrapper" class="has-background-primary">
         <div class="container is-fluid">
           <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
               <a class="navbar-item" href="<%= root_path %>">
-                  <img src="<%= asset_pack_path 'images/pasty_logo.svg' %>" />
+                <img src="<%= asset_pack_path 'images/pasty_logo.svg' %>" alt="Pasty logo" />
               </a>
               <div class="navbar-burger">
                 <span></span>
@@ -40,9 +43,21 @@
               <div class="navbar-end">
               </div>
             </div>
+            <div class="navbar-end">
+              <% if user_signed_in? %>
+              <% else %>
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a href="<%= new_user_registration_path %>" class="button is-primary"><strong><%= _('Sign up') %></strong></a>
+                  <a href="<%= new_user_session_path %>" class="button is-light"><%= _('Log in') %></a>
+                </div>
+              </div>
+              <% end %>
+            </div>
           </nav>
         </div>
       </div>
+      <% end %>
       <%= render 'layouts/messages' %>
       <%= yield %>
       <footer id="footer" class="footer">
