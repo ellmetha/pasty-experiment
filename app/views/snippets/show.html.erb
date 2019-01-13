@@ -16,6 +16,10 @@
         <%= _('Expires in %{d}') %{:d => distance_of_time_in_words(Time.now, @snippet.expire_in)} %>
         <% elsif @snippet.is_one_time %>
         <%= _('One Time Snippet') %>
+        <% if !@snippet.destroyed? %>
+        &ndash;
+        <span class="has-background-warning">&nbsp;<%= _('Automatic removal after the next view.') %>&nbsp;</span>
+        <% end %>
         <% else %>
         <%= _('Never expires') %>
         <% end %>
