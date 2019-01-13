@@ -4,6 +4,8 @@
   "dependencies": {
     "@rails/webpacker": "https://github.com/rails/webpacker",
     "bulma": "^0.7.2",
+    "clipboard": "^2.0.4",
+    "feather-icons": "^4.10.0",
     "highlight.js": "^9.13.1",
     "noty": "^3.2.0-beta"
   },
