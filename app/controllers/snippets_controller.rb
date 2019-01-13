@@ -11,6 +11,10 @@ class SnippetsController < ApplicationController
       @snippet.increment!(:views_counter)
     end
 
+    if params.include?('raw')
+      return render(plain: @snippet.content)
+    end
+
     # Users have the ability to create a new snippet using the content of the currently displayed
     # snippet. This is why a new Snippet instance is created at this point.
     @new_snippet_from_current = Snippet.new(
