@@ -1,6 +1,11 @@
 pasty-experiment
 ################
 
+.. image:: https://travis-ci.org/ellmetha/pasty-experiment.svg?branch=master
+  :target: https://travis-ci.org/ellmetha/pasty-experiment
+
+|
+
 Pasty is a hypothetical paste tool where users can can store plain text (like
 source code snippets) to be shared later on. Needless to say that this project
 is just a humble - and small - experiment I worked on while experimenting Ruby
