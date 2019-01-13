@@ -4,6 +4,24 @@
 <section id="snippet_url" class="section has-background-light">
   <div class="container is-fluid">
     <h1 class="subtitle has-text-grey"><%= request.original_url %></h1>
+    <hr />
+    <p>
+      <small>
+        <b><%= Snippet::LEXERS.fetch(@snippet.lexer.to_sym, _('Plain text')) %></b>
+        &ndash;
+        <% if @snippet.expire_in %>
+        <%= _('Expires in %{d}') %{:d => distance_of_time_in_words(Time.now, @snippet.expire_in)} %>
+        <% elsif @snippet.is_one_time %>
+        <%= _('One Time Snippet') %>
+        <% else %>
+        <%= _('Never expires') %>
+        <% end %>
+        <% if !@snippet.is_one_time %>
+        &ndash;
+        <a href="<%= request.original_url %>?raw"><%= _('View raw') %></a>
+        <% end %>
+      </small>
+    </p>
   </div>
 </section>
 <section id="snippet_content" class="section">
