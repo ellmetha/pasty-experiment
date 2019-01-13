@@ -36,4 +36,35 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal 'text/plain', @response.content_type
   end
+
+  test 'enforces validation of single-value expiration when the creation form is rendered' do
+    get root_url
+    assert_response :success
+    refute_predicate assigns(:snippet), 'valid?'
+    assert_includes assigns(:snippet).errors, :expiration
+  end
+
+  test 'can create a new snippet' do
+    post(
+      snippets_url,
+      params: { snippet: { lexer: 'python', content: 'import datetime', expiration: 'days_7' } }
+    )
+    assert_response :found
+    assert_equal Snippet.all.count, 1
+    snippet = Snippet.first
+    assert_equal snippet.lexer, 'python'
+    assert_equal snippet.content, 'import datetime'
+    now_dt = Time.now
+    assert now_dt + 7.days - 2.seconds < snippet.expire_in
+    assert now_dt + 7.days + 2.seconds > snippet.expire_in
+  end
+
+  test 'cannot create a new snippet if the expiration is missing' do
+    post(
+      snippets_url,
+      params: { snippet: { lexer: 'python', content: 'import datetime' } }
+    )
+    assert_response :ok
+    assert_includes assigns(:snippet).errors, :expiration
+  end
 end

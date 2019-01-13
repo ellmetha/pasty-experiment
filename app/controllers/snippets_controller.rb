@@ -30,6 +30,7 @@ class SnippetsController < ApplicationController
   # Performs the actual creation of a newly posted snippet.
   def create
     @snippet = Snippet.new(snippet_params)
+    @snippet.require_expiration
 
     if @snippet.save
       redirect_to @snippet, notice: _('Snippet was successfully created.')
