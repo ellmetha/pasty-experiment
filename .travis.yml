@@ -3,6 +3,13 @@ language: ruby
 services:
   - postgresql
 
+addons:
+  apt:
+    packages:
+      - postgresql-9.6
+      - postgresql-contrib-9.6
+  postgresql: 9.5
+
 before_install:
   - nvm install 11.1.0
   - nvm use 11.1.0
