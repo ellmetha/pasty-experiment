@@ -45,6 +45,22 @@
             </div>
             <div class="navbar-end">
               <% if user_signed_in? %>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link"><i data-feather="user"></i></a>
+
+                <div class="navbar-dropdown is-right">
+                  <a href="#" class="navbar-item">
+                    <i data-feather="settings" width="20px" class="is-mr-2"></i><%= _('Settings') %>
+                  </a>
+                  <a href="#" class="navbar-item">
+                    <i data-feather="code" width="20px" class="is-mr-2"></i><%= _('My snippets') %>
+                  </a>
+                  <hr class="navbar-divider">
+                  <a href="<%= destroy_user_session_path %>" class="navbar-item">
+                    <i data-feather="log-out" width="20px" class="is-mr-2"></i><%= _('Log out') %>
+                  </a>
+                </div>
+              </div>
               <% else %>
               <div class="navbar-item">
                 <div class="buttons">
