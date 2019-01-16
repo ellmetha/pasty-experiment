@@ -12,15 +12,17 @@
           <div class="field">
             <%= f.label :email %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.errors :email %>
           </div>
 
           <div class="field">
             <%= f.label :password %>
             <%= f.password_field :password, autocomplete: "current-password" %>
+            <%= f.errors :password %>
           </div>
 
           <div class="actions">
-            <%= f.submit "Log in", class: 'is-large is-fullwidth' %>
+            <%= f.submit _('Log in'), class: 'is-large is-fullwidth' %>
           </div>
         <% end %>
 

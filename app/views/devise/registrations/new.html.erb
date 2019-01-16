@@ -9,11 +9,11 @@
         </div>
         <h1 class="title has-text-centered"><%= _('Sign up') %></h1>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), builder: AppFormBuilder) do |f| %>
-          <%= devise_error_messages! %>
 
           <div class="field">
             <%= f.label :email %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.errors :email %>
           </div>
 
           <div class="field">
@@ -22,15 +22,17 @@
             <% if @minimum_password_length %>
             <%= f.help_block _('%{min} characters minimum') %{:min => @minimum_password_length} %>
             <% end %>
+            <%= f.errors :password %>
           </div>
 
           <div class="field">
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.errors :password_confirmation %>
           </div>
 
           <div class="actions">
-            <%= f.submit "Sign up", class: 'is-large is-fullwidth' %>
+            <%= f.submit _('Sign up'), class: 'is-large is-fullwidth' %>
           </div>
         <% end %>
 

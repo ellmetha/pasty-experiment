@@ -1,16 +1,30 @@
-<h2>Forgot your password?</h2>
+<% content_for(:navbar) do %>&nbsp;<% end %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third is-offset-one-third">
+        <div class="is-pt-2 is-pb-4 has-text-centered">
+          <img src="<%= asset_pack_path 'images/pasty_logo_cyan.svg' %>" alt="Pasty logo" width="120" />
+        </div>
+        <h1 class="title has-text-centered"><%= _('Forgot your password?') %></h1>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), builder: AppFormBuilder) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="field">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.errors :email %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit _('Submit'), class: 'is-large is-fullwidth' %>
+          </div>
+        <% end %>
+
+        <div class="is-py-5 has-text-centered">
+          <a href="<%= new_user_session_path %>"><%= _('Log in') %></a>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>
