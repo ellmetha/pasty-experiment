@@ -25,6 +25,7 @@ end
 group :development do
   gem 'annotate'
   gem 'gettext', '>=3.0.2', :require => false
+  gem "letter_opener"
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem "rubocop", require: false
   gem "simplecov", require: false

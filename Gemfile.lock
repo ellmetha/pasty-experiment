@@ -112,6 +112,10 @@ GEM
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     json (2.1.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -263,6 +267,7 @@ DEPENDENCIES
   gettext (>= 3.0.2)
   gettext_i18n_rails
   jbuilder (~> 2.5)
+  letter_opener
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18)
   pgcli-rails
