@@ -47,9 +47,8 @@
               <% if user_signed_in? %>
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link"><i data-feather="user"></i></a>
-
                 <div class="navbar-dropdown is-right">
-                  <a href="#" class="navbar-item">
+                  <a href="<%= edit_user_registration_path %>" class="navbar-item">
                     <i data-feather="settings" width="20px" class="is-mr-2"></i><%= _('Settings') %>
                   </a>
                   <a href="#" class="navbar-item">
