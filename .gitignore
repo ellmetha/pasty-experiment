@@ -33,6 +33,9 @@
 # Don't put database configuration file in source control
 /config/database.yml
 
+# Don't put environment-specific configuration file in source control
+.env
+
 # Ignore coverage reports
 /coverage/
 /public/packs

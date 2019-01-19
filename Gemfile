@@ -6,6 +6,7 @@ ruby '2.5.3'
 gem 'activerecord-session_store'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
+gem 'dotenv-rails'
 gem 'gettext_i18n_rails'
 gem 'jbuilder', '~> 2.5'
 gem "pg", ">= 0.18"
