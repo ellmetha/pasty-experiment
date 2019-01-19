@@ -36,7 +36,8 @@ You can install the project locally using the following commands:
 
 The ``make`` action will install the required dependencies (gems using
 bundler and node modules using yarn), create a local copy of the
-``database.yml`` file and setup the database (create, migrate and seet it).
+``database.yml`` and ``.env`` files and setup the database (create, migrate
+and seet it).
 
 Once this is done you can run the development server using the following
 command:
