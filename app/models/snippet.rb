@@ -53,6 +53,8 @@ class Snippet < ApplicationRecord
             presence: true,
             if: :expiration_required?
 
+  scope :expired, -> { where(arel_table[:expire_in].lt(Time.now.utc)) }
+
   # Defines specific is_lexer? methods = and scopes for each considered lexer. Unique constants are
   # also generated for each lexer.
   LEXERS.keys.each do |lexer|

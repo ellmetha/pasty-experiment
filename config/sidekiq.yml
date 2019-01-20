@@ -3,3 +3,8 @@
 :queues:
   - default
   - mailers
+
+:schedule:
+  email:
+    cron: '0 * * * * *'
+    class: Scheduler::SnippetCleanupScheduler

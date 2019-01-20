@@ -123,4 +123,12 @@ class SnippetTest < ActiveSupport::TestCase
     assert_nil snippet.expire_in
     assert_not snippet.is_one_time?
   end
+
+  test 'expired scope selects only expired snippets' do
+    snippet1 = FactoryBot.create(:snippet, expire_in: Time.now.utc - 7.days)
+    snippet2 = FactoryBot.create(:snippet, expire_in: Time.now.utc - 1.days)
+    FactoryBot.create(:snippet, expire_in: Time.now.utc + 7.days)
+    FactoryBot.create(:snippet, expire_in: nil)
+    assert_equal [snippet1, snippet2], Snippet.expired
+  end
 end
