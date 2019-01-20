@@ -7,6 +7,7 @@ Rails.application.routes.draw do
                sign_up: 'signup'
              },
              sign_out_via: 'get'
+  mount Sidekiq::Web => '/sidekiq'
   resources :snippets, only: %i[show create], path: ''
   root 'snippets#new'
 end

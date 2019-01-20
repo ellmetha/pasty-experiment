@@ -14,6 +14,8 @@ gem "pgcli-rails"
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 gem 'rails-i18n', '~> 5.1'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'webpacker', '>= 4.0.x'
 
 group :development, :test do

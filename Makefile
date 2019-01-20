@@ -19,6 +19,10 @@ s: server
 server:
 	bin/rails s
 
+w: worker
+worker:
+	bundle exec sidekiq
+
 
 # QUALITY ASSURANCE
 # ~~~~~~~~~~~~~~~~~

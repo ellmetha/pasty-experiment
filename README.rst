@@ -48,6 +48,13 @@ command:
 
 Congrats, you're in! The development server should now be accessible at http://127.0.0.1:3000.
 
+If you need to work on asynchronous features, you can fire up Sidekiq in order to process jobs
+and scheduled tasks asynchronously:
+
+.. code-block:: shell
+
+  $ make worker
+
 Frontend developments
 ---------------------
 
