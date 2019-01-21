@@ -15,7 +15,7 @@ export default {
       new Noty({
         text: message.dataset.msg,
         type: message.dataset.type === 'alert' ? 'alert' : 'success',
-        timeout: 3000,
+        timeout: 6000,
         theme: 'sunset',
         layout: 'bottomRight',
       }).show();
