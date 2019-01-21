@@ -14,7 +14,7 @@ export default {
       const message = flashMessages[i];
       new Noty({
         text: message.dataset.msg,
-        type: message.dataset.type === 'alert' ? 'alert' : 'success',
+        type: message.dataset.name === 'alert' ? 'alert' : 'success',
         timeout: 6000,
         theme: 'sunset',
         layout: 'bottomRight',
