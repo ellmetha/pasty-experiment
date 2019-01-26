@@ -17,7 +17,7 @@
             <div class="container">
               <div class="columns">
                 <div class="column">
-                  <p class="title"><%= _('Change email') %></p>
+                  <p class="title is-size-4"><%= _('Change email') %></p>
                   <div class="field">
                     <%= f.label :email %>
                     <%= f.email_field :email, autocomplete: "email" %>
@@ -25,7 +25,7 @@
                   </div>
                 </div>
                 <div class="column">
-                  <p class="title"><%= _('Change password') %></p>
+                  <p class="title is-size-4"><%= _('Change password') %></p>
                   <div class="field">
                     <%= f.label :password %>
                     <%= f.password_field :password, autocomplete: "new-password" %>
@@ -41,9 +41,9 @@
                   </div>
                 </div>
               </div>
-              <div class="columns has-background-grey-lighter">
+              <div class="columns has-background-light">
                 <div class="column is-half">
-                  <p class="title"><%= _('Confirm changes') %></p>
+                  <p class="title is-size-4"><%= _('Confirm changes') %></p>
                   <div class="field">
                     <%= f.label :current_password %>
                     <%= f.password_field :current_password, autocomplete: "current-password" %>
