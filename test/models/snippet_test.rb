@@ -6,48 +6,48 @@ class SnippetTest < ActiveSupport::TestCase
     assert_not snippet.is_one_time?
   end
 
-  test 'validation fails if the lexer is next an expected one' do
+  test '#valid? fails if the lexer is next an expected one' do
     snippet = FactoryBot.build(:snippet, lexer: 'foolang')
     assert_not snippet.valid?
     assert_includes snippet.errors, :lexer
   end
 
-  test 'validation fails if the lexer is not present' do
+  test '#valid? fails if the lexer is not present' do
     snippet = FactoryBot.build(:snippet, lexer: nil)
     assert_not snippet.valid?
     assert_includes snippet.errors, :lexer
   end
 
-  test 'validation fails if the content is not present' do
+  test '#valid? fails if the content is not present' do
     snippet = FactoryBot.build(:snippet, content: nil)
     assert_not snippet.valid?
     assert_includes snippet.errors, :content
   end
 
-  test 'validations succeeds without expiration by default' do
+  test '#valid? succeeds without expiration by default' do
     snippet = Snippet.new(lexer: :python, content: 'import datetime', expire_in: Time.now + 6.hours)
     assert_predicate snippet, 'valid?'
   end
 
-  test 'validation fails if expiration is required' do
+  test '#valid? fails if expiration is required' do
     snippet = Snippet.new(lexer: :python, content: 'import datetime')
     snippet.require_expiration
     assert_not snippet.valid?
   end
 
-  test 'validations succeeds with an expiration value when expiration is required' do
+  test '#valid? succeeds with an expiration value when expiration is required' do
     snippet = Snippet.new(lexer: :python, content: 'import datetime', expiration: 'days_7')
     snippet.require_expiration
     assert_predicate snippet, 'valid?'
   end
 
-  test 'validations fails with an invalid expiration value when expiration is required' do
+  test '#valid? fails with an invalid expiration value when expiration is required' do
     snippet = Snippet.new(lexer: :python, content: 'import datetime', expiration: 'foobar')
     snippet.require_expiration
     assert_not snippet.valid?
   end
 
-  test 'validations succeeds with a never-ending expiration when a user is associated' do
+  test '#valid? succeeds with a never-ending expiration when a user is associated' do
     snippet = Snippet.new(
       lexer: :python,
       content: 'import datetime',
@@ -58,7 +58,7 @@ class SnippetTest < ActiveSupport::TestCase
     assert_predicate snippet, 'valid?'
   end
 
-  test 'validations fails with a never-ending expiration when no user is associated' do
+  test '#valid? fails with a never-ending expiration when no user is associated' do
     snippet = Snippet.new(
       lexer: :python, content: 'import datetime', expiration: 'never', user: nil
     )
@@ -66,7 +66,7 @@ class SnippetTest < ActiveSupport::TestCase
     assert_not snippet.valid?
   end
 
-  test 'knows if it corresponds to a specific language' do
+  test '#is_"language"? knows if it corresponds to a specific language' do
     snippet = FactoryBot.create(:snippet, lexer: :python)
     assert_predicate snippet, :is_python?
     assert_not snippet.is_ruby?
@@ -124,7 +124,7 @@ class SnippetTest < ActiveSupport::TestCase
     assert_not snippet.is_one_time?
   end
 
-  test 'expired scope selects only expired snippets' do
+  test '#expired scope selects only expired snippets' do
     snippet1 = FactoryBot.create(:snippet, expire_in: Time.now.utc - 7.days)
     snippet2 = FactoryBot.create(:snippet, expire_in: Time.now.utc - 1.days)
     FactoryBot.create(:snippet, expire_in: Time.now.utc + 7.days)

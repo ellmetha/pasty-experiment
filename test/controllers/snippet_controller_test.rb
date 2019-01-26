@@ -8,21 +8,21 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     assert_select 'code', snippet.content
   end
 
-  test 'snippet view counter is incremented when the snippet is browsed' do
+  test '#show increments the snippet view counter when the snippet is browsed' do
     snippet = FactoryBot.create(:snippet)
     get snippet_url(snippet)
     snippet.reload
     assert_equal snippet.views_counter, 1
   end
 
-  test 'defines a copy of the showed snippet to allow the user to edit' do
+  test '#show defines a copy of the showed snippet to allow the user to edit it' do
     snippet = FactoryBot.create(:snippet)
     get snippet_url(snippet)
     assert_equal assigns(:new_snippet_from_current).lexer, snippet.lexer
     assert_equal assigns(:new_snippet_from_current).content, snippet.content
   end
 
-  test 'destroys a one-time snippet that is being viewed for the second time' do
+  test '#show destroys a one-time snippet if it is being viewed for the second time' do
     snippet = FactoryBot.create(:snippet, is_one_time: true, views_counter: 1)
     get snippet_url(snippet)
     assert_raises(ActiveRecord::RecordNotFound) do
@@ -30,21 +30,21 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'allows plain text rendering of a snippet using the raw GET parameter' do
+  test '#show allows plain text rendering of a snippet using the raw GET parameter' do
     snippet = FactoryBot.create(:snippet, lexer: 'python', content: 'import datetime')
     get snippet_url(snippet), params: { raw: '' }
     assert_response :success
     assert_equal 'text/plain', @response.content_type
   end
 
-  test 'enforces validation of single-value expiration when the creation form is rendered' do
+  test '#new enforces validation of single-value expiration when the creation form is rendered' do
     get root_url
     assert_response :success
     refute_predicate assigns(:snippet), 'valid?'
     assert_includes assigns(:snippet).errors, :expiration
   end
 
-  test 'can create a new snippet' do
+  test '#create creates a new snippet' do
     post(
       snippets_url,
       params: { snippet: { lexer: 'python', content: 'import datetime', expiration: 'days_7' } }
@@ -59,7 +59,7 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     assert now_dt + 7.days + 2.seconds > snippet.expire_in
   end
 
-  test 'cannot create a new snippet if the expiration is missing' do
+  test '#create cannot create a new snippet if the expiration is missing' do
     post(
       snippets_url,
       params: { snippet: { lexer: 'python', content: 'import datetime' } }
