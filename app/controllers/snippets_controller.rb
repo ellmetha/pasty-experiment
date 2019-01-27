@@ -1,5 +1,6 @@
 class SnippetsController < ApplicationController
   before_action :set_snippet, only: %i[show]
+  before_action :authenticate_user!, only: %i[user_list]
 
   # Displays a specific snippet.
   def show
@@ -30,6 +31,7 @@ class SnippetsController < ApplicationController
   # Performs the actual creation of a newly posted snippet.
   def create
     @snippet = Snippet.new(snippet_params)
+    @snippet.user = current_user
     @snippet.require_expiration
 
     if @snippet.save

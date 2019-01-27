@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class SnippetControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   test 'snippet access works as expected' do
     snippet = FactoryBot.create(:snippet)
     get snippet_url(snippet)
@@ -57,6 +59,19 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     now_dt = Time.now
     assert now_dt + 7.days - 2.seconds < snippet.expire_in
     assert now_dt + 7.days + 2.seconds > snippet.expire_in
+  end
+
+  test '#create creates a new snippet associated with the current user if any' do
+    user = FactoryBot.create(:user)
+    sign_in user
+    post(
+      snippets_url,
+      params: { snippet: { lexer: 'python', content: 'import datetime', expiration: 'days_7' } }
+    )
+    assert_response :found
+    assert_equal Snippet.all.count, 1
+    snippet = Snippet.first
+    assert_equal user, snippet.user
   end
 
   test '#create cannot create a new snippet if the expiration is missing' do
