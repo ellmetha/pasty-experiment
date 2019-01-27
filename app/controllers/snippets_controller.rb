@@ -43,7 +43,11 @@ class SnippetsController < ApplicationController
 
   # Renders the list of user's snippets.
   def user_list
-    @snippets = Snippet.where(user: current_user).order(created_at: :desc)
+    @snippets =
+      Snippet
+      .where(user: current_user)
+      .paginate(page: params[:page], per_page: 30)
+      .order(created_at: :desc)
   end
 
   private

@@ -38,6 +38,9 @@
         </div>
       </div>
       <% end %>
+      <div class="column has-text-centered">
+        <%= will_paginate @snippets, renderer: BulmaPagination::Rails %>
+      </div>
     </div>
   </div>
 </section>

@@ -17,6 +17,8 @@ gem 'rails-i18n', '~> 5.1'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'webpacker', '>= 4.0.x'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bulma'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
