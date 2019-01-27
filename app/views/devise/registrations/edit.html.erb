@@ -1,3 +1,5 @@
+<% content_for :data_controller do %>registration:edit<% end %>
+
 <section id="settings_hero" class="hero is-light">
   <div class="hero-body">
     <div class="container">
@@ -62,6 +64,13 @@
             </div>
           </div>
         </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column has-text-centered">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: 'delete_account_form', method: :delete }, builder: AppFormBuilder) do |f| %>
+          <button id="delete_account_button" class="button is-small is-text" data-alert-title="<%= _('Are you sure?') %>" data-alert-text="<%= _('Once deleted, you will not be able to recover your account.') %>" data-alert-cancel-text="<%= _('Cancel') %>" data-alert-confirm-text="<%= _('Delete my account') %>"><%= _('Delete my account') %></button>
         <% end %>
       </div>
     </div>
