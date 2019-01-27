@@ -82,4 +82,20 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_includes assigns(:snippet).errors, :expiration
   end
+
+  test '#user_list cannot be accessed by an anonymous user' do
+    get list_user_snippets_path
+    assert_redirected_to new_user_session_path
+  end
+
+  test '#user_list lists the snippets of a user' do
+    user = FactoryBot.create(:user)
+    sign_in user
+
+    snippet = FactoryBot.create(:snippet, lexer: 'python', content: 'import datetime', user: user)
+    FactoryBot.create(:snippet, lexer: 'ruby', content: 'puts "Hello"')
+
+    get list_user_snippets_path
+    assert_equal [snippet], assigns(:snippets)
+  end
 end
