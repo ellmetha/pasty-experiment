@@ -1,0 +1,43 @@
+<% content_for :body_id do %>snippet_user_list<% end %>
+<% content_for :data_controller do %>snippet:user_list<% end %>
+
+<section id="snippet_user_list_hero" class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%= _('My snippets') %>
+      </h1>
+    </div>
+  </div>
+</section>
+<section id="snippet_user_list_content" class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @snippets.each do |snippet| %>
+      <div class="column is-full">
+        <div class="card">
+          <div class="card-content">
+            <div class="is-pulled-right">
+              <a href="#" class="button is-info"><%= _('View') %></a>
+            </div>
+            <p>
+              <b><%= Snippet::LEXERS.fetch(snippet.lexer.to_sym, _('Plain text')) %></b>
+              &ndash;
+              <% if snippet.expire_in %>
+              <%= _('Expires in %{d}') %{:d => distance_of_time_in_words(Time.now, snippet.expire_in)} %>
+              <% elsif snippet.is_one_time %>
+              <%= _('One Time Snippet') %>
+              <% else %>
+              <%= _('Never expires') %>
+              <% end %>
+            </p>
+          </div>
+          <div class="snippet-preview">
+            <pre><code class="<%= snippet.lexer %>"><%= snippet.content.lines[0..10].join('') %></code></pre>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</section>

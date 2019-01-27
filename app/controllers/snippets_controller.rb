@@ -41,6 +41,11 @@ class SnippetsController < ApplicationController
     end
   end
 
+  # Renders the list of user's snippets.
+  def user_list
+    @snippets = Snippet.where(user: current_user).order(created_at: :desc)
+  end
+
   private
 
   # Set a current snippet associated with an action.

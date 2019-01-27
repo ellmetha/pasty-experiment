@@ -1,0 +1,15 @@
+//
+// Snippet user list page styles
+// --------------------------------------------------
+
+body#snippet_user_list {
+  .snippet-preview {
+    pre {
+      padding: 0;
+
+      code {
+        padding: 1rem;
+      }
+    }
+  }
+}
