@@ -18,8 +18,7 @@ Metrics/AbcSize:
   Enabled: false
 
 Metrics/ClassLength:
-  Exclude:
-    - "test/**/*"
+  Enabled: false
 
 Metrics/LineLength:
   Max: 100
