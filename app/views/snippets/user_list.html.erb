@@ -18,7 +18,7 @@
         <div class="card">
           <div class="card-content">
             <div class="is-pulled-right">
-              <a href="#" class="button is-info"><%= _('View') %></a>
+              <a href="<%= snippet_path(snippet.id) %>" class="button is-info"><%= _('View') %></a>
             </div>
             <p>
               <b><%= Snippet::LEXERS.fetch(snippet.lexer.to_sym, _('Plain text')) %></b>
