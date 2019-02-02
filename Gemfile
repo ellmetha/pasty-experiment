@@ -9,8 +9,8 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'gettext_i18n_rails'
 gem 'jbuilder', '~> 2.5'
-gem "pg", ">= 0.18"
-gem "pgcli-rails"
+gem 'pg', ">= 0.18"
+gem 'pgcli-rails'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 gem 'rails-i18n', '~> 5.1'
@@ -30,11 +30,12 @@ end
 group :development do
   gem 'annotate'
   gem 'gettext', '>=3.0.2', :require => false
-  gem "letter_opener"
+  gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem "rubocop", require: false
-  gem "simplecov", require: false
-  gem "simplecov-console", require: false
+  gem 'pry-rails'
+  gem 'rubocop', require: false
+  gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
