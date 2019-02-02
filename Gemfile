@@ -8,6 +8,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'dotenv-rails'
 gem 'gettext_i18n_rails'
+gem 'graphql'
 gem 'jbuilder', '~> 2.5'
 gem 'pg', ">= 0.18"
 gem 'pgcli-rails'
@@ -29,15 +30,19 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'coffee-rails'
   gem 'gettext', '>=3.0.2', :require => false
+  gem 'graphiql-rails'
   gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry-rails'
   gem 'rubocop', require: false
+  gem 'sass-rails'
   gem 'simplecov', require: false
   gem 'simplecov-console', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'uglifier'
   gem 'web-console', '>= 3.3.0'
 end
 
