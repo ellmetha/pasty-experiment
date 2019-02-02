@@ -41,6 +41,14 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'text/plain', @response.content_type
   end
 
+  test '#new renders the snippet creation form' do
+    get root_url
+    assert_response :success
+    assert_select 'select#snippet_lexer', 1
+    assert_select 'select#snippet_expiration', 1
+    assert_select 'textarea#snippet_content', 1
+  end
+
   test '#create creates a new snippet' do
     post(
       snippets_url,
