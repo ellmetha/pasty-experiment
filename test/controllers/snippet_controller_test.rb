@@ -22,8 +22,8 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
   test '#show defines a copy of the showed snippet to allow the user to edit it' do
     snippet = FactoryBot.create(:snippet)
     get snippet_url(snippet)
-    assert_equal assigns(:new_snippet_from_current).lexer, snippet.lexer
-    assert_equal assigns(:new_snippet_from_current).content, snippet.content
+    assert_select 'select#snippet_lexer option[selected="selected"]', Snippet::LEXERS[snippet.lexer]
+    assert_select 'textarea#snippet_content', snippet.content
   end
 
   test '#show destroys a one-time snippet if it is being viewed for the second time' do
@@ -39,13 +39,6 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     get snippet_url(snippet), params: { raw: '' }
     assert_response :success
     assert_equal 'text/plain', @response.content_type
-  end
-
-  test '#new enforces validation of single-value expiration when the creation form is rendered' do
-    get root_url
-    assert_response :success
-    refute_predicate assigns(:snippet), 'valid?'
-    assert_includes assigns(:snippet).errors, :expiration
   end
 
   test '#create creates a new snippet' do
@@ -76,13 +69,10 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     assert_equal user, snippet.user
   end
 
-  test '#create cannot create a new snippet if the expiration is missing' do
-    post(
-      snippets_url,
-      params: { snippet: { lexer: 'python', content: 'import datetime' } }
-    )
-    assert_response :ok
-    assert_includes assigns(:snippet).errors, :expiration
+  test '#create enforces validation of single-value expiration' do
+    post snippets_path, params: { snippet: { lexer: 'python', content: 'import datetime' } }
+    assert_response :success
+    assert_select '.field_with_errors select#snippet_expiration', 1
   end
 
   test '#user_list cannot be accessed by an anonymous user' do
@@ -94,10 +84,11 @@ class SnippetControllerTest < ActionDispatch::IntegrationTest
     user = FactoryBot.create(:user)
     sign_in user
 
-    snippet = FactoryBot.create(:snippet, lexer: 'python', content: 'import datetime', user: user)
+    FactoryBot.create(:snippet, lexer: 'python', content: 'import datetime', user: user)
     FactoryBot.create(:snippet, lexer: 'ruby', content: 'puts "Hello"')
 
     get list_user_snippets_path
-    assert_equal [snippet], assigns(:snippets)
+    assert_select '.snippet-preview pre code', 1
+    assert_select '.snippet-preview pre code', 'import datetime'
   end
 end
