@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class SnippetType < Types::BaseObject
     graphql_name 'Snippet'

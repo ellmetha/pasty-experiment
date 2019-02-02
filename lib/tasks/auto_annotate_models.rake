@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if Rails.env.development?
   Annotate.set_defaults(
     'show_foreign_keys': 'true',

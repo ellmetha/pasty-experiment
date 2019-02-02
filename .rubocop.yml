@@ -38,8 +38,5 @@ Style/Documentation:
 Style/EmptyMethod:
   Enabled: false
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 Style/RescueStandardError:
   Enabled: false

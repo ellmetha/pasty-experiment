@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSnippets < ActiveRecord::Migration[5.2]
   def change
     create_table :snippets, id: :uuid do |t|

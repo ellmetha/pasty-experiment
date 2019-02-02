@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SnippetsController < ApplicationController
   before_action :set_snippet, only: %i[show]
   before_action :authenticate_user!, only: %i[user_list]

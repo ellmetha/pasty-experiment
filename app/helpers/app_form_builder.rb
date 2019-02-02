@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Extends the FormBuilder in order to allow form helpers to smoothly behave with the frontend
 # framework used to style forms and inputs.
 class AppFormBuilder < ActionView::Helpers::FormBuilder
