@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -24,7 +26,12 @@ class GraphqlController < ApplicationController
   private
 
   def retrieve_user
-    current_user
+    token = request.headers['X-Pasty-Access-Token']
+    if token.present?
+      AuthToken.verify(token)
+    else
+      current_user
+    end
   end
 
   # Handle form data, JSON body, or a blank value
