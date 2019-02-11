@@ -5,7 +5,7 @@ require 'test_helper'
 class SnippetControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
-  test 'snippet access works as expected' do
+  test '#show allows to access an existing snippet' do
     snippet = FactoryBot.create(:snippet)
     get snippet_url(snippet)
     assert_response :success
