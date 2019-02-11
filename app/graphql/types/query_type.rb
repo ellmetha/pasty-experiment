@@ -14,11 +14,19 @@ module Types
     end
 
     def snippet(id:)
+      authorize_authenticated_user
       Snippet.find(id)
     end
 
     def snippet_connection
+      authorize_authenticated_user
       Snippet.all
+    end
+
+    private
+
+    def authorize_authenticated_user
+      raise GraphQL::ExecutionError, 'User not authenticated' if context[:current_user].blank?
     end
   end
 end

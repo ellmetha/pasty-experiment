@@ -6,8 +6,7 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: retrieve_user
     }
     result = Schema.execute(
       query,
@@ -23,6 +22,10 @@ class GraphqlController < ApplicationController
   end
 
   private
+
+  def retrieve_user
+    current_user
+  end
 
   # Handle form data, JSON body, or a blank value
   def ensure_hash(ambiguous_param)
